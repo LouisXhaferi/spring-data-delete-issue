@@ -1,6 +1,5 @@
 package com.mercedesbenz.springdatajpaissue
 
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -8,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Import
 import org.springframework.test.context.ActiveProfiles
-import java.time.Instant
 import java.time.Instant.EPOCH
-import java.util.UUID
 import java.util.UUID.randomUUID
 
 @Import(TestcontainersConfiguration::class)
@@ -31,7 +28,7 @@ class DeleteByIssueTest(
                 DeletableEntity(randomUUID(), EPOCH.minusSeconds(1)),
                 DeletableEntity(randomUUID(), EPOCH.minusSeconds(2)),
                 DeletableEntity(randomUUID(), EPOCH),
-            )
+            ),
         )
 
         val deleted = deleteByIssueRepository.deleteByCreatedAtBefore(EPOCH)
@@ -46,7 +43,7 @@ class DeleteByIssueTest(
             listOf(
                 DeletableEntity(randomUUID(), EPOCH.minusSeconds(1)),
                 DeletableEntity(randomUUID(), EPOCH),
-            )
+            ),
         )
 
         val deleted = deleteByIssueRepository.deleteByCreatedAtBefore(EPOCH)
@@ -62,7 +59,7 @@ class DeleteByIssueTest(
                 DeletableEntity(randomUUID(), EPOCH.minusSeconds(1)),
                 DeletableEntity(randomUUID(), EPOCH.minusSeconds(2)),
                 DeletableEntity(randomUUID(), EPOCH),
-            )
+            ),
         )
 
         val deleted = deleteByIssueRepository.deleteAllInBatchByCreatedAtBefore(EPOCH)
@@ -77,7 +74,7 @@ class DeleteByIssueTest(
             listOf(
                 DeletableEntity(randomUUID(), EPOCH.minusSeconds(1)),
                 DeletableEntity(randomUUID(), EPOCH),
-            )
+            ),
         )
 
         val deleted = deleteByIssueRepository.deleteAllInBatchByCreatedAtBefore(EPOCH)
